@@ -10,8 +10,6 @@ $(function () {
     var parts = id.split("-");
     var hour = parseInt(parts[parts.length - 1], 10); // Parse the hour as an integer
 
-    console.log(hour);
-
     // Remove all classes from the current element
     $content.removeClass("past present future");
 
@@ -19,7 +17,6 @@ $(function () {
     const currentHour = dayjs().format("H");
 
     // Determine the class based on the extracted hour
-    console.log(currentHour);
 
     if (currentHour < hour) {
       $content.addClass("future");
