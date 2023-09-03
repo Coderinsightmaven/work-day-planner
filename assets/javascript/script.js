@@ -2,22 +2,37 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
+  $(".content").each(function () {
+    var $content = $(this); // Select the current element
+    var id = $content.attr("id"); // Get the 'id' attribute
+
+    // Split the 'id' by the '-' character and get the last part as the hour
+    var parts = id.split("-");
+    var hour = parseInt(parts[parts.length - 1], 10); // Parse the hour as an integer
+
+    console.log(hour);
+
+    // Remove all classes from the current element
+    $content.removeClass("past present future");
+
+    // // Get the current hour using Day.js
+    const currentHour = dayjs().format("H");
+
+    // Determine the class based on the extracted hour
+    console.log(currentHour);
+
+    if (currentHour < hour) {
+      $content.addClass("future");
+    } else if (currentHour == hour) {
+      $content.addClass("present");
+    } else {
+      $content.addClass("past");
+    }
+  });
+
+  // Get the current date using DayJS and format it
+  const currentDate = dayjs().format("dddd, MMMM D, YYYY");
+
+  // Find the #currentDay element and update its text
+  $("#currentDay").text(currentDate);
 });
