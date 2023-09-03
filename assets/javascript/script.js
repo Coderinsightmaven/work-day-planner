@@ -1,23 +1,42 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 $(function () {
+  // Function to save event to local storage
+  function saveEvent(hour, eventText) {
+    localStorage.setItem(`event-${hour}`, eventText);
+  }
+
+  //Function to load events from local storage and display them
+  function loadEvents() {
+    $(".time-block").each(function () {
+      var $timeBlock = $(this);
+      var hour = $timeBlock.attr("id").split("-")[1];
+      var eventText = localStorage.getItem(`event-${hour}`);
+      if (eventText) {
+        $timeBlock.find(".description").val(eventText);
+      }
+    });
+  }
+
+  //click event listener to save buttons
+  $(".saveBtn").on("click", function () {
+    var $timeBlock = $(this).closest(".time-block");
+    var hour = $timeBlock.attr("id").split("-")[1];
+    var eventText = $timeBlock.find(".description").val();
+    saveEvent(hour, eventText);
+  });
+
+  // Load events from local storage when the page loads
+  loadEvents();
+
+  // Update time-block classes based on the current time
   $(".content").each(function () {
-    var $content = $(this); // Select the current element
-    var id = $content.attr("id"); // Get the 'id' attribute
-
-    // Split the 'id' by the '-' character and get the last part as the hour
+    var $content = $(this);
+    var id = $content.attr("id");
     var parts = id.split("-");
-    var hour = parseInt(parts[parts.length - 1], 10); // Parse the hour as an integer
-
-    // Remove all classes from the current element
+    var hour = parseInt(parts[parts.length - 1], 10);
     $content.removeClass("past present future");
-
-    // // Get the current hour using Day.js
     const currentHour = dayjs().format("H");
 
     // Determine the class based on the extracted hour
-
     if (currentHour < hour) {
       $content.addClass("future");
     } else if (currentHour == hour) {
