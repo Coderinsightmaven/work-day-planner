@@ -5,6 +5,6 @@ This app uses javascript, DOM Minipulation, HTML, and CSS to create a calender w
 https://github.com/Coderinsightmaven/work-day-planner
 
 ## Github Pages : 
-https://coderinsightmaven.github.io/work-day-planner/
+https://coderinsightmaven.github.io/work-day-planner
 
 ### Screen Shots
