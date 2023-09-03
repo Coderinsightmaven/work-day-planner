@@ -8,3 +8,5 @@ https://github.com/Coderinsightmaven/work-day-planner
 https://coderinsightmaven.github.io/work-day-planner
 
 ### Screen Shots
+![screenshot1](https://github.com/Coderinsightmaven/work-day-planner/assets/104241865/e0729004-4582-4b29-8123-c5dcfa713eac)
+![screenshot3](https://github.com/Coderinsightmaven/work-day-planner/assets/104241865/d2374a3d-a086-441d-a4af-718b091a2d8e)
